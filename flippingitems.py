@@ -22,7 +22,14 @@ class RsItem(object):
 		self.historic_prices = []
 
 	def __repr__(self):
-		return '<RsItem osb_id:{0}, name:{1}, buying_price: {2}, selling_price: {3}, overall_price: {4}, buying_qty: {5}, selling_qty: {6}, historic_prices: {7}>'\
+		return '<RsItem osb_id:{0}, \n' \
+			'name:{1}, \n ' \
+			'buying_price: {2}, \n' \
+			'selling_price: {3}, \n' \
+			'overall_price: {4}, \n' \
+			'buying_qty: {5}, \n' \
+			'selling_qty: {6}, \n' \
+			'historic_prices: {7}>\n'\
 			.format(self.osb_id, self.name, self.buying_price, self.selling_price, self.overall_price, self.buying_qty, self.selling_qty, self.historic_prices)
 
 
