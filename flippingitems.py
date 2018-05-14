@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 
 __author__ = "Will Ediger"
 
@@ -25,7 +26,7 @@ def parse_json():
 	if use_live_data:
 		json_str = requests.get(base_osb_url).content.decode('utf-8')
 	else:
-		json_str = open('summary_limited.json', 'r').read()
+		json_str = open(os.path.join('osbuddy_cached', 'summary.json'), 'r').read()
 
 	summary = json.loads(json_str)
 
@@ -38,7 +39,8 @@ def parse_json():
 				latest_prices_json = requests.get(current_price_osb_url.format(osb_id=rs_item.osb_id)).content.decode(
 					'utf-8')
 			else:
-				latest_prices_json = open('latest{osb_id}.json'.format(osb_id=rs_item.osb_id)).read()
+				latest_filename = 'latest{osb_id}.json'.format(osb_id=rs_item.osb_id)
+				latest_prices_json = open(os.path.join('osbuddy_cached', latest_filename), 'r').read()
 
 			current_prices = json.loads(latest_prices_json)
 			rs_item.buying_price = current_prices['buying']
