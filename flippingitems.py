@@ -1,10 +1,11 @@
 import requests
 import json
 import os
+import time
 
 __author__ = "Will Ediger"
 
-use_live_data = False
+use_live_data = True
 base_osb_url = 'https://rsbuddy.com/exchange/summary.json'
 current_price_osb_url = 'https://api.rsbuddy.com/grandExchange?a=guidePrice&i={osb_id}'
 historic_prices_osb_url = 'https://api.rsbuddy.com/grandExchange?a=graph&g={min_between_price}&start={start_time}&i={osb_id}'
@@ -59,10 +60,13 @@ def parse_json():
 			rs_item.buying_qty = current_prices['buyingQuantity']
 			rs_item.selling_qty = current_prices['sellingQuantity']
 			rs_item.overall_price = current_prices['overall']
+
 			items.append(rs_item)
 
 	return items
 
 
+current_time_ms = int(time.time()) * 1000
+prior_week_time_ms = current_time_ms - 604800000
 items = parse_json()
 print(items)
