@@ -50,7 +50,5 @@ def parse_json():
 			rs_item.overall_price = current_prices['overall']
 			items.append(rs_item)
 
-	print(json_str)
-
-
-x = parse_json()
+parse_json()
+print('finished')
