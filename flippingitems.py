@@ -21,6 +21,10 @@ class RsItem(object):
 		self.selling_qty = 0
 		self.historic_prices = []
 
+	def __repr__(self):
+		return '<RsItem osb_id:{0}, name:{1}, buying_price: {2}, selling_price: {3}, overall_price: {4}, buying_qty: {5}, selling_qty: {6}, historic_prices: {7}>'\
+			.format(self.osb_id, self.name, self.buying_price, self.selling_price, self.overall_price, self.buying_qty, self.selling_qty, self.historic_prices)
+
 
 def parse_json():
 	if use_live_data:
@@ -50,5 +54,8 @@ def parse_json():
 			rs_item.overall_price = current_prices['overall']
 			items.append(rs_item)
 
-parse_json()
-print('finished')
+	return items
+
+
+items = parse_json()
+print(items)
